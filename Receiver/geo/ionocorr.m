@@ -15,9 +15,9 @@ function ionodel = ionocorr(gpsTow, svXyz, usrXyz)
 %
 %   Model: J. A. Klobuchar, IEEE Trans. Aerosp. Electron. Syst., AES-23(3),
 %   1987; IS-GPS-200, 20.3.3.5.2.5. Angles inside the model are in
-%   semicircles. The geomagnetic-latitude term uses 1.616, as in the code
-%   that produced the reference results; IS-GPS-200 and the simulator
-%   (klobuchar.m) use 1.617, a difference of up to 3 cm of L1 delay.
+%   semicircles. The geomagnetic-latitude term uses 1.617 (IS-GPS-200), as in
+%   the simulator (klobuchar.m), so the receiver removes the ionospheric delay
+%   the simulator injects, given the same broadcast coefficients.
 %   Written for this package (J. Sanwale et al., 2026), GPL-3.0-or-later.
 
 global ALPHA BETA
@@ -40,7 +40,7 @@ E = el/pi;                                   % elevation [semicircles]
 psi = 0.0137/(E + 0.11) - 0.022;             % earth-centred angle [semicircles]
 phiI = min(max(lat/pi + psi*cos(az), -0.416), 0.416);   % pierce-point latitude
 lamI = lon/pi + psi*sin(az)/cos(phiI*pi);    % pierce-point longitude
-phiM = phiI + 0.064*cos((lamI - 1.616)*pi);  % geomagnetic latitude
+phiM = phiI + 0.064*cos((lamI - 1.617)*pi);  % geomagnetic latitude
 
 t = mod(4.32e4*lamI + gpsTow, 86400);        % local time at the pierce point [s]
 F = 1 + 16*(0.53 - E)^3;                     % obliquity factor

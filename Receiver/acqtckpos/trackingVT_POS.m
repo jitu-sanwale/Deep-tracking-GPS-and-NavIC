@@ -167,7 +167,7 @@ for msIndex = 1: datalength/pdi
             temp = xyz2llh(estPos);
             user_ll	= [temp(1:2) .* 180 /pi temp(3)];
             ionodel(svindex)        = ionoSc(svindex)*ionocorr(tot_est_tck(svindex),svxyz_tck(svindex,:), estPos(1:3));
-            tropodel_unb3(svindex)  = abs(trop_UNB3(cmn.doy,user_ll(1),user_ll(3),el(svindex)));
+            tropodel_unb3(svindex)  = rxTropo(user_ll(1),user_ll(3),el(svindex));   % same model as the simulator
             counter_corr(svindex)   = 0;
         end
         

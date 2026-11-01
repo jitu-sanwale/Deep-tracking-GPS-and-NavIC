@@ -239,7 +239,7 @@ for msIndex = 1:datalength
             az(svindex) = ((pi/2)-atan2(svenu(1),svenu(2)))*180/pi;
             ull = xyz2llh(rU');
             ionodel(svindex)  = ionoSc(svindex)*ionocorr(tot_tck, svpr, rU');   % L1 Klobuchar -> L5 for NavIC
-            tropodel(svindex) = abs(trop_UNB3(cmn.doy, ull(1)*180/pi, ull(3), el(svindex)));
+            tropodel(svindex) = rxTropo(ull(1)*180/pi, ull(3), el(svindex));   % same model as the simulator
             counter_corr(svindex) = 0;
         end
 
