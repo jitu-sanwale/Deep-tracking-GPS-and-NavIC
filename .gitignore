@@ -1,0 +1,14 @@
+# Generated data: the simulator writes several GB of IF data and trajectories
+Simulator/IFdata/
+Simulator/FighterProfiles/
+*.bin
+# Receiver outputs and caches
+Receiver/output*/
+*.mat
+# MATLAB and OS by-products
+*.asv
+*.m~
+slprj/
+.DS_Store
+Thumbs.db
+desktop.ini
