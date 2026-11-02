@@ -105,6 +105,9 @@ end
 function saveFig(f, name)
 set(f,'PaperPositionMode','auto');
 print(f, name, '-dpng', '-r110');
+% hidden figures (batch runs) are released, otherwise each run leaves graphics
+% processes behind and a long batch session eventually stalls in print
+if strcmp(get(f, 'Visible'), 'off') || ~usejava('desktop'), close(f); end
 end
 
 function writeCsv(name, M, header)
